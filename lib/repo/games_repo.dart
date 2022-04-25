@@ -14,7 +14,9 @@ class GamesRepo {
       List<DataModel> dataModels = [];
       for (var model in models) {
         DataModel dataModel = DataModel.fromJson(model);
+        dataModels.add(dataModel);
       }
+      return dataModels;
     }
   }
 }
