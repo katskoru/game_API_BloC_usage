@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:game_api_using_bloc/repo/screens/game_det_page.dart';
 import 'package:glassmorphism/glassmorphism.dart';
 import '../../models/data_model.dart';
 import '../bloc/game_data_bloc.dart';
@@ -12,7 +13,6 @@ class LandingPage extends StatelessWidget {
     return Scaffold(
       body: BlocBuilder<GameDataBloc, GameDataState>(
         builder: (context, state) {
-          // context.read<GameDataBloc>().add(GameDataLoading());
           if (state is GameDataInitialState) {
             context.read<GameDataBloc>().add(LoadGameDataEvent());
             return const CircularProgressIndicator();
@@ -22,7 +22,7 @@ class LandingPage extends StatelessWidget {
             return buildGameModel(state.apiResult);
           } else if (state is GameDataErrorState) {
             return const Center(
-              child: Text("Uh oh! 😭 Something went wrong!"),
+              child: Text("Something went wrong!"),
             );
           }
           return const Text("Error");
@@ -40,7 +40,14 @@ class LandingPage extends StatelessWidget {
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 8),
           child: InkWell(
-            onTap: () {},
+            borderRadius: BorderRadius.circular(12),
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return GameDetailPage(
+                  dataModel: dataModel,
+                );
+              }));
+            },
             child: SizedBox(
               width: double.infinity,
               child: Stack(
@@ -50,7 +57,7 @@ class LandingPage extends StatelessWidget {
                     child: Image(
                       height: 230,
                       width: MediaQuery.of(context).size.width / 1.05,
-                      fit: BoxFit.cover,
+                      fit: BoxFit.fill,
                       image: NetworkImage(dataModel.image),
                     ),
                   ),
@@ -58,9 +65,9 @@ class LandingPage extends StatelessWidget {
                     bottom: 0,
                     child: GlassmorphicContainer(
                       width: MediaQuery.of(context).size.width / 1.05,
-                      height: 120,
+                      height: 90,
                       border: 0,
-                      borderRadius: 0,
+                      borderRadius: 12,
                       blur: 20,
                       alignment: Alignment.bottomCenter,
                       linearGradient: LinearGradient(
