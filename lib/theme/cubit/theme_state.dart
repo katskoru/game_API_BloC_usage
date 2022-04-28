@@ -5,13 +5,13 @@ class ThemeState {
   ThemeData? theme;
   ThemeState({required this.isDarkThemeOn}) {
     if (isDarkThemeOn) {
-      theme = appThemeData[AppTheme.DarkAppTheme];
+      theme = appThemeData[AppTheme.darkAppTheme];
     } else {
-      theme = appThemeData[AppTheme.LightAppTheme];
+      theme = appThemeData[AppTheme.lightAppTheme];
     }
   }
 
   ThemeState copyWith({bool? changeState}) {
-    return ThemeState(isDarkThemeOn: changeState ?? this.isDarkThemeOn);
+    return ThemeState(isDarkThemeOn: changeState ?? isDarkThemeOn);
   }
 }

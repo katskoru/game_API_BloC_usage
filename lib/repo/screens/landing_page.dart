@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:game_api_using_bloc/repo/screens/game_det_page.dart';
+import 'package:game_api_using_bloc/static_val/my_static_values.dart';
 import 'package:glassmorphism/glassmorphism.dart';
 import '../../models/data_model.dart';
 
@@ -17,10 +18,13 @@ class LandingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.orange[900],
+        centerTitle: true,
         actions: [
           BlocBuilder<ThemeCubit, ThemeState>(
             builder: (context, state) {
               return Switch(
+                  activeColor: Colors.black,
                   value: state.isDarkThemeOn,
                   onChanged: (newValue) {
                     context.read<ThemeCubit>().toggleSwitch(newValue);
@@ -28,7 +32,7 @@ class LandingPage extends StatelessWidget {
             },
           ),
         ],
-        title: Text("Game Library"),
+        title: const Text("Game Library"),
       ),
       body: BlocBuilder<GameDataBloc, GameDataState>(
         builder: (context, state) {
@@ -59,7 +63,7 @@ class LandingPage extends StatelessWidget {
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 8),
           child: InkWell(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(MyStaticValues.myRadius),
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
                 return GameDetailPage(
@@ -72,7 +76,8 @@ class LandingPage extends StatelessWidget {
               child: Stack(
                 children: [
                   ClipRRect(
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius:
+                        BorderRadius.circular(MyStaticValues.myRadius),
                     child: Image(
                       height: 230,
                       width: MediaQuery.of(context).size.width / 1.05,
@@ -86,7 +91,7 @@ class LandingPage extends StatelessWidget {
                       width: MediaQuery.of(context).size.width / 1.05,
                       height: 90,
                       border: 0,
-                      borderRadius: 12,
+                      borderRadius: MyStaticValues.myRadius,
                       blur: 20,
                       alignment: Alignment.bottomCenter,
                       linearGradient: LinearGradient(

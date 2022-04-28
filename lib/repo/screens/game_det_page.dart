@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../models/data_model.dart';
+import '../../static_val/my_static_values.dart';
 
 class GameDetailPage extends StatelessWidget {
   final DataModel dataModel;
@@ -18,7 +19,7 @@ class GameDetailPage extends StatelessWidget {
         backgroundColor: Colors.orange[900],
         centerTitle: true,
         title: const Text(
-          "Details",
+          " Game Details",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
@@ -49,7 +50,7 @@ class GameDetailPage extends StatelessWidget {
                               dataModel.title,
                               style: const TextStyle(
                                 fontSize: 24,
-                                fontWeight: FontWeight.bold,
+                                fontWeight: FontWeight.w900,
                               ),
                             ),
                           ),
@@ -63,7 +64,8 @@ class GameDetailPage extends StatelessWidget {
                             padding: const EdgeInsets.all(8),
                             decoration: BoxDecoration(
                               color: Colors.orange[900],
-                              borderRadius: BorderRadius.circular(12),
+                              borderRadius: BorderRadius.circular(
+                                  MyStaticValues.myRadius),
                             ),
                             child: Text(
                               dataModel.worth,
@@ -134,7 +136,8 @@ class GameDetailPage extends StatelessWidget {
                               padding: const EdgeInsets.all(8),
                               decoration: BoxDecoration(
                                 color: Colors.orange[900],
-                                borderRadius: BorderRadius.circular(12),
+                                borderRadius: BorderRadius.circular(
+                                    MyStaticValues.myRadius),
                               ),
                               child: const Center(
                                 child: Text(
@@ -161,7 +164,8 @@ class GameDetailPage extends StatelessWidget {
                               padding: const EdgeInsets.all(8),
                               decoration: BoxDecoration(
                                 color: Colors.orange[900],
-                                borderRadius: BorderRadius.circular(12),
+                                borderRadius: BorderRadius.circular(
+                                    MyStaticValues.myRadius),
                               ),
                               child: const Center(
                                 child: Text(
