@@ -60,6 +60,67 @@ class LandingPage extends StatelessWidget {
       itemCount: apiResult.length,
       itemBuilder: (BuildContext context, int index) {
         final DataModel dataModel = apiResult[index];
+
+        Widget glassWidget = GlassmorphicContainer(
+          width: MediaQuery.of(context).size.width / 1.05,
+          height: 90,
+          border: 0,
+          borderRadius: MyStaticValues.myRadius,
+          blur: 20,
+          alignment: Alignment.bottomCenter,
+          linearGradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              const Color(0xFFffffff).withOpacity(0.1),
+              const Color(0xFFFFFFFF).withOpacity(0.05),
+            ],
+            stops: const [
+              0.1,
+              1,
+            ],
+          ),
+          borderGradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              const Color(0xFFffffff).withOpacity(0.5),
+              const Color((0xFFFFFFFF)).withOpacity(0.5),
+            ],
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    width: double.infinity,
+                    child: Text(
+                      dataModel.title,
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 4,
+                  ),
+                  Text(
+                    "Platforms: " + dataModel.platforms,
+                    style: const TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 8),
           child: InkWell(
@@ -87,63 +148,7 @@ class LandingPage extends StatelessWidget {
                   ),
                   Positioned(
                     bottom: 0,
-                    child: GlassmorphicContainer(
-                      width: MediaQuery.of(context).size.width / 1.05,
-                      height: 90,
-                      border: 0,
-                      borderRadius: MyStaticValues.myRadius,
-                      blur: 20,
-                      alignment: Alignment.bottomCenter,
-                      linearGradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [
-                          const Color(0xFFffffff).withOpacity(0.1),
-                          const Color(0xFFFFFFFF).withOpacity(0.05),
-                        ],
-                        stops: const [
-                          0.1,
-                          1,
-                        ],
-                      ),
-                      borderGradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [
-                          const Color(0xFFffffff).withOpacity(0.5),
-                          const Color((0xFFFFFFFF)).withOpacity(0.5),
-                        ],
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              width: double.infinity,
-                              child: Text(
-                                dataModel.title,
-                                style: const TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 4,
-                            ),
-                            Text(
-                              "Platforms: " + dataModel.platforms,
-                              style: const TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                    child: glassWidget,
                   )
                 ],
               ),
