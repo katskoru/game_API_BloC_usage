@@ -3,10 +3,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:game_api_using_bloc/repo/bloc/game_data_bloc.dart';
 import 'package:game_api_using_bloc/repo/games_repo.dart';
 import 'package:game_api_using_bloc/repo/screens/landing_page.dart';
+import 'package:game_api_using_bloc/theme/cubit/theme_cubit.dart';
 
 void main() {
-  runApp(BlocProvider<GameDataBloc>(
-    create: (context) => GameDataBloc(GamesRepo()),
+  runApp(MultiBlocProvider(
+    providers: [
+      BlocProvider<GameDataBloc>(
+        create: (context) => GameDataBloc(GamesRepo()),
+      ),
+      BlocProvider<ThemeCubit>(
+        create: (context) => ThemeCubit(),
+      ),
+    ],
     child: const MyApp(),
   ));
 }
@@ -16,13 +24,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-          primarySwatch: Colors.blue,
-          brightness: Brightness.dark,
-          scaffoldBackgroundColor: Colors.black),
-      home: const LandingPage(),
+    return BlocBuilder<ThemeCubit, ThemeState>(
+      builder: (context, state) {
+        return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'Flutter Demo',
+            theme: state.theme,
+            home: LandingPage());
+      },
     );
   }
 }

@@ -3,14 +3,33 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:game_api_using_bloc/repo/screens/game_det_page.dart';
 import 'package:glassmorphism/glassmorphism.dart';
 import '../../models/data_model.dart';
+
+import '../../theme/cubit/theme_cubit.dart';
+
 import '../bloc/game_data_bloc.dart';
 
 class LandingPage extends StatelessWidget {
-  const LandingPage({Key? key}) : super(key: key);
+  const LandingPage({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        actions: [
+          BlocBuilder<ThemeCubit, ThemeState>(
+            builder: (context, state) {
+              return Switch(
+                  value: state.isDarkThemeOn,
+                  onChanged: (newValue) {
+                    context.read<ThemeCubit>().toggleSwitch(newValue);
+                  });
+            },
+          ),
+        ],
+        title: Text("Game Library"),
+      ),
       body: BlocBuilder<GameDataBloc, GameDataState>(
         builder: (context, state) {
           if (state is GameDataInitialState) {
