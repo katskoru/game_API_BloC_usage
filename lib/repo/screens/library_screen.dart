@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:game_api_using_bloc/repo/screens/game_det_page.dart';
+import 'package:game_api_using_bloc/repo/screens/game_det_screen.dart';
 import 'package:game_api_using_bloc/static_val/my_static_values.dart';
 import 'package:glassmorphism/glassmorphism.dart';
 import '../../models/data_model.dart';
@@ -9,8 +9,8 @@ import '../../theme/cubit/theme_cubit.dart';
 
 import '../bloc/game_data_bloc.dart';
 
-class LandingPage extends StatelessWidget {
-  const LandingPage({
+class LibraryScreen extends StatelessWidget {
+  const LibraryScreen({
     Key? key,
   }) : super(key: key);
 
@@ -127,7 +127,7 @@ class LandingPage extends StatelessWidget {
             borderRadius: BorderRadius.circular(MyStaticValues.myRadius),
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return GameDetailPage(
+                return GameDetailScreen(
                   dataModel: dataModel,
                 );
               }));

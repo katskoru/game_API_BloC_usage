@@ -5,9 +5,9 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../models/data_model.dart';
 import '../../static_val/my_static_values.dart';
 
-class GameDetailPage extends StatelessWidget {
+class GameDetailScreen extends StatelessWidget {
   final DataModel dataModel;
-  const GameDetailPage({
+  const GameDetailScreen({
     Key? key,
     required this.dataModel,
   }) : super(key: key);
@@ -63,7 +63,7 @@ class GameDetailPage extends StatelessWidget {
                           child: Text(
                             dataModel.worth,
                             style: const TextStyle(
-                              fontSize: 22,
+                              fontSize: MyStaticValues.subtitleSize,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -84,25 +84,22 @@ class GameDetailPage extends StatelessWidget {
                     height: 24,
                   ),
                   const Text(
-                    "Game Description",
+                    "About Game",
                     style: TextStyle(
-                      fontSize: 22,
+                      fontSize: MyStaticValues.subtitleSize,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   Text(
                     dataModel.description,
-                    style: const TextStyle(
-                        // fontWeight: FontWeight.w,
-                        ),
                   ),
                   const SizedBox(
                     height: 40,
                   ),
                   const Text(
-                    "Steps to get it",
+                    "Instructions",
                     style: TextStyle(
-                      fontSize: 22,
+                      fontSize: MyStaticValues.subtitleSize,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -115,17 +112,11 @@ class GameDetailPage extends StatelessWidget {
                   const SizedBox(
                     height: 24,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      bottomButtons(
-                          "Open in Gamepower", dataModel.gamerpower_url),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      bottomButtons("Get the game", dataModel.open_giveaway_url)
-                    ],
+                  bottomButton("Open in Gamepower", dataModel.gamerpower_url),
+                  const SizedBox(
+                    height: 10,
                   ),
+                  bottomButton("Get the game", dataModel.open_giveaway_url),
                 ],
               ),
             ),
@@ -135,28 +126,26 @@ class GameDetailPage extends StatelessWidget {
     );
   }
 
-  bottomButtons(String buttonText, String url) {
-    return Flexible(
-      child: InkWell(
-        onTap: () {
-          launch(url);
-        },
-        child: Container(
-          width: double.infinity,
-          height: 79,
-          padding: const EdgeInsets.all(8),
-          decoration: BoxDecoration(
-            color: Colors.orange[900],
-            borderRadius: BorderRadius.circular(MyStaticValues.myRadius),
-          ),
-          child: Center(
-            child: Text(
-              buttonText,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-              ),
+  bottomButton(String buttonText, String url) {
+    return InkWell(
+      onTap: () {
+        launch(url);
+      },
+      child: Container(
+        width: double.infinity,
+        height: 50,
+        padding: const EdgeInsets.all(8),
+        decoration: BoxDecoration(
+          color: Colors.orange[900],
+          borderRadius: BorderRadius.circular(MyStaticValues.myRadius),
+        ),
+        child: Center(
+          child: Text(
+            buttonText,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontSize: MyStaticValues.subtitleSize,
+              fontWeight: FontWeight.bold,
             ),
           ),
         ),

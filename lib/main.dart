@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:game_api_using_bloc/repo/bloc/game_data_bloc.dart';
 import 'package:game_api_using_bloc/repo/games_repo.dart';
-import 'package:game_api_using_bloc/repo/screens/landing_page.dart';
+import 'package:game_api_using_bloc/repo/screens/library_screen.dart';
 import 'package:game_api_using_bloc/theme/cubit/theme_cubit.dart';
 
 void main() {
@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'Flutter Demo',
             theme: state.theme,
-            home: const LandingPage());
+            home: const LibraryScreen());
       },
     );
   }
