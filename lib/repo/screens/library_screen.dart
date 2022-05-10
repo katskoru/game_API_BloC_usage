@@ -63,7 +63,7 @@ class LibraryScreen extends StatelessWidget {
 
         Widget glassWidget = GlassmorphicContainer(
           width: MediaQuery.of(context).size.width / 1.05,
-          height: 90,
+          height: 80,
           border: 0,
           borderRadius: MyStaticValues.myRadius,
           blur: 20,
@@ -72,7 +72,7 @@ class LibraryScreen extends StatelessWidget {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
-              const Color(0xFFffffff).withOpacity(0.1),
+              const Color(0xFFffffff).withOpacity(0.08),
               const Color(0xFFFFFFFF).withOpacity(0.05),
             ],
             stops: const [
@@ -84,8 +84,8 @@ class LibraryScreen extends StatelessWidget {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
-              const Color(0xFFffffff).withOpacity(0.5),
-              const Color((0xFFFFFFFF)).withOpacity(0.5),
+              const Color(0xFFffffff).withOpacity(0.9),
+              const Color((0xFFFFFFFF)).withOpacity(0.9),
             ],
           ),
           child: Padding(
